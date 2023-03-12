@@ -17,6 +17,9 @@ jobs:
           - { PHP_VERSION: php80-fpm }
           - { PHP_VERSION: php74-fpm }
           - { PHP_VERSION: php73-fpm }
+          - { PHP_VERSION: php72-fpm }
+          - { PHP_VERSION: php71-fpm }
+          - { PHP_VERSION: php70-fpm }
     steps:
     - uses: actions/checkout@v1
 
