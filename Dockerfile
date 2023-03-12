@@ -26,7 +26,7 @@ RUN apt update --fix-missing && \
     sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld.cnf && \
     echo 'memory_limit = 4G' >> /usr/local/etc/php/conf.d/memory-limit-php.ini && \
     echo 'max_execution_time = 300' >> /usr/local/etc/php/conf.d/memory-limit-php.ini && \
-    rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
+    rm -f /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
     composer self-update && \
     service elasticsearch start && \
     /bin/bash -c "/usr/bin/mysqld_safe &" && \
