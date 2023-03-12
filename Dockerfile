@@ -2,6 +2,10 @@ ARG PHP_VERSION=php74-fpm
 FROM srcoder/development-php:${PHP_VERSION}
 
 ENV CI=true
+ENV COMPOSER_VERSION=2
+
+COPY scripts/retry retry
+COPY scripts/start-services start-services
 
 RUN apt update --fix-missing && \
     export DEBIAN_FRONTEND=noninteractive && \
@@ -27,8 +31,7 @@ RUN apt update --fix-missing && \
     echo 'memory_limit = 4G' >> /usr/local/etc/php/conf.d/memory-limit-php.ini && \
     echo 'max_execution_time = 300' >> /usr/local/etc/php/conf.d/memory-limit-php.ini && \
     rm -f /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
-    composer self-update && \
-    service elasticsearch start && \
+    ./start-services && \
     /bin/bash -c "/usr/bin/mysqld_safe &" && \
     sleep 5 && \
     mysql -u root -e 'CREATE DATABASE `magento`;' && \
@@ -37,5 +40,3 @@ RUN apt update --fix-missing && \
     mysql -u root -e "CREATE USER 'magento-test'@'%' IDENTIFIED BY 'password';" && \
     mysql -u root -e "GRANT ALL PRIVILEGES ON * . * TO 'magento'@'%';" && \
     mysql -u root -e "GRANT ALL PRIVILEGES ON * . * TO 'magento-test'@'%';"
-
-COPY scripts/retry retry
