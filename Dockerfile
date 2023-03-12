@@ -14,11 +14,12 @@ RUN apt update --fix-missing && \
     apt update && \
     echo "[mysqld]\ndefault-authentication-plugin=mysql_native_password" > ~/.my.cnf && \
     apt install -y elasticsearch mysql-server mysql-client && \
-    sed -i 's/^elasticsearch hard memlock.*/elasticsearch hard memlock 200000/' /etc/security/limits.conf && \
-    sed -i 's/^ES_HEAP_SIZE=.*/ES_HEAP_SIZE=256m/' /etc/default/elasticsearch && \
-    sed -i 's/^MAX_LOCKED_MEMORY=.*/MAX_LOCKED_MEMORY=200000/' /etc/default/elasticsearch && \
-    sed -i 's/^#ES_JAVA_OPTS=.*/ES_JAVA_OPTS=-server -Xms512m -Xmx512m/' /etc/default/elasticsearch && \
-    sed -i 's/^index.number_of_shards:.*/index.number_of_shards: 5/; s/^index.number_of_replicas:.*/index.number_of_replicas: 1/' /etc/elasticsearch/elasticsearch.yml && \
+    echo "Replacing Elasticsearch config values" && \
+    sed -i 's/^elasticsearch hard memlock.*/elasticsearch hard memlock 100000/' /etc/security/limits.conf && \
+    sed -i 's/^ES_HEAP_SIZE=.*/ES_HEAP_SIZE=128m/' /etc/default/elasticsearch && \
+    sed -i 's/^MAX_LOCKED_MEMORY=.*/MAX_LOCKED_MEMORY=100000/' /etc/default/elasticsearch && \
+    sed -i 's/^#ES_JAVA_OPTS=.*/ES_JAVA_OPTS=-server/' /etc/default/elasticsearch && \
+    sed -i 's/^index.number_of_shards:.*/index.number_of_shards: 1/; s/^index.number_of_replicas:.*/index.number_of_replicas: 0/' /etc/elasticsearch/elasticsearch.yml && \
     /usr/share/elasticsearch/bin/elasticsearch-plugin install -b analysis-icu && \
     /usr/share/elasticsearch/bin/elasticsearch-plugin install -b analysis-phonetic && \
     rm -rf /var/lib/apt/lists/* && \
