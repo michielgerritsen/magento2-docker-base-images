@@ -36,6 +36,6 @@ RUN apt update --fix-missing && \
     mysql -u root -e "CREATE USER 'magento'@'%' IDENTIFIED BY 'password';" && \
     mysql -u root -e "CREATE USER 'magento-test'@'%' IDENTIFIED BY 'password';" && \
     mysql -u root -e "GRANT ALL PRIVILEGES ON * . * TO 'magento'@'%';" && \
-    mysql -u root -e "GRANT ALL PRIVILEGES ON * . * TO 'magento-test'@'%';" && \
+    mysql -u root -e "GRANT ALL PRIVILEGES ON * . * TO 'magento-test'@'%';"
 
 COPY scripts/retry retry
