@@ -6,7 +6,7 @@ if [ "$COMPOSER_VERSION" == "1" ]; then
 fi
 
 service elasticsearch start
-/bin/bash -c "/usr/bin/mysqld_safe &"
+service mysqld start
 
 # Now wait until mysql is online
 
