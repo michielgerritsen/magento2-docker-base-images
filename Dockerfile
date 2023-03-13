@@ -32,8 +32,6 @@ RUN apt update --fix-missing && \
     echo 'max_execution_time = 300' >> /usr/local/etc/php/conf.d/memory-limit-php.ini && \
     rm -f /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
     ./start-services && \
-    /bin/bash -c "/usr/bin/mysqld_safe &" && \
-    sleep 5 && \
     mysql -u root -e 'CREATE DATABASE `magento`;' && \
     mysql -u root -e 'CREATE DATABASE `magento-test`;' && \
     mysql -u root -e "CREATE USER 'magento'@'%' IDENTIFIED BY 'password';" && \
