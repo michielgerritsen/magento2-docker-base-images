@@ -1,12 +1,14 @@
 #!/bin/bash
 
+set -x
+
 if [ "$COMPOSER_VERSION" == "1" ]; then
   echo "Installing Composer version 1"
   composer self-update --1
 fi
 
 service elasticsearch start
-service mysqld start
+service mysql start
 
 # Now wait until mysql is online
 
