@@ -1,14 +1,15 @@
 #!/bin/bash
 
-set -x
+set -e
+[ "$DEBUG" == 'true' ] && set -x
 
 if [ "$COMPOSER_VERSION" == "1" ]; then
   echo "Installing Composer version 1"
   composer self-update --1
 fi
 
+/bin/bash -c "/usr/bin/mysqld_safe &"
 service elasticsearch start
-service mysql start
 
 # Now wait until mysql is online
 

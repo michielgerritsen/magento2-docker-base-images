@@ -1,4 +1,4 @@
-name: Magento 2.3 Community Edition Docker container build
+name: Build base Docker images
 on:
   push:
   pull_request:
