@@ -13,7 +13,7 @@ RUN apt update --fix-missing && \
     curl -L https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add - && \
     echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | tee -a /etc/apt/sources.list.d/elastic-7.x.list && \
     wget https://repo.mysql.com//mysql-apt-config_0.8.18-1_all.deb && \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 467B942D3A79BD29 && \
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B7B3B788A8D3785C && \
     dpkg -i mysql-apt-config_0.8.18-1_all.deb && \
     apt update && \
     echo "[mysqld]\ndefault-authentication-plugin=mysql_native_password" > ~/.my.cnf && \
@@ -31,6 +31,10 @@ RUN apt update --fix-missing && \
     echo 'memory_limit = 4G' >> /usr/local/etc/php/conf.d/memory-limit-php.ini && \
     echo 'max_execution_time = 300' >> /usr/local/etc/php/conf.d/memory-limit-php.ini && \
     rm -f /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
+    curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs && \
+    echo "Node.js version: $(node --version)" && \
+    echo "NPM version: $(npm --version)" && \
     ./start-services && \
     mysql -u root -e 'CREATE DATABASE `magento`;' && \
     mysql -u root -e 'CREATE DATABASE `magento-test`;' && \
