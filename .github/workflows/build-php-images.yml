@@ -12,6 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         cfg:
+          - { PHP_VERSION: php83-fpm }
           - { PHP_VERSION: php82-fpm }
           - { PHP_VERSION: php81-fpm }
           - { PHP_VERSION: php80-fpm }
@@ -28,6 +29,9 @@ jobs:
         docker build .
         -t michielgerritsen/magento2-base-image:${{ matrix.cfg.PHP_VERSION }}
         --build-arg PHP_VERSION=${{ matrix.cfg.PHP_VERSION }}
+
+    - name: Test that the image is working
+      run: docker run michielgerritsen/magento2-base-image:${{ matrix.cfg.PHP_VERSION }} ./start-services
 
     # Step 3: Upload the images to Docker Hub.
     - name: Docker hub login
