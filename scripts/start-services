@@ -10,15 +10,18 @@ fi
 
 /bin/bash -c "/usr/bin/mysqld_safe &"
 
-rm /var/lib/elasticsearch/nodes/node.lock || true
-rm /var/lib/elasticsearch/nodes/*/node.lock || true
+#rm /var/lib/elasticsearch/nodes/node.lock || true
+#rm /var/lib/elasticsearch/nodes/*/node.lock || true
 
-service elasticsearch start
+#service elasticsearch start
 
+echo "elasticsearch.log:"
 cat /var/log/elasticsearch/elasticsearch.log
 sleep 5
+echo "elasticsearch.log:"
 cat /var/log/elasticsearch/elasticsearch.log
 sleep 5
+echo "elasticsearch.log:"
 cat /var/log/elasticsearch/elasticsearch.log
 
 # Now wait until mysql is online
