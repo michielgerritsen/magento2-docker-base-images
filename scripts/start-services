@@ -13,9 +13,11 @@ fi
 
 service elasticsearch start || true
 
-echo "Elasticsearch logs:"
-cat /var/log/elasticsearch/elasticsearch.log
-echo "Elasticsearch logs end. Bye."; exit 1
+if [ "$DEBUG" == 'true' ]: then
+  echo "Elasticsearch logs:"
+  cat /var/log/elasticsearch/elasticsearch.log
+  echo "Elasticsearch logs end. Bye."; exit 1
+fi
 
 # Now wait until mysql is online
 
