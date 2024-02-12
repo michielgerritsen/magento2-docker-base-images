@@ -13,7 +13,7 @@ fi
 
 service elasticsearch start || true
 
-if [ "$DEBUG" == 'true' ]: then
+if [ "$DEBUG" == 'true' ]; then
   echo "Elasticsearch logs:"
   cat /var/log/elasticsearch/elasticsearch.log
   echo "Elasticsearch logs end. Bye."; exit 1
