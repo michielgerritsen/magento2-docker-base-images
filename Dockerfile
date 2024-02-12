@@ -6,6 +6,7 @@ ENV COMPOSER_VERSION=2
 
 COPY scripts/retry retry
 COPY scripts/start-services start-services
+COPY scripts/stop-services stop-services
 
 RUN apt update --fix-missing && \
     export DEBIAN_FRONTEND=noninteractive && \
@@ -30,12 +31,11 @@ RUN apt update --fix-missing && \
     apt-get install -y nodejs && \
     echo "Node.js version: $(node --version)" && \
     echo "NPM version: $(npm --version)" && \
-    /bin/bash -c "/usr/bin/mysqld_safe &" && \
-    sleep 5 && \
+    ./start-services && \
     mysql -u root -e 'CREATE DATABASE `magento`;' && \
     mysql -u root -e 'CREATE DATABASE `magento-test`;' && \
     mysql -u root -e "CREATE USER 'magento'@'%' IDENTIFIED BY 'password';" && \
     mysql -u root -e "CREATE USER 'magento-test'@'%' IDENTIFIED BY 'password';" && \
     mysql -u root -e "GRANT ALL PRIVILEGES ON * . * TO 'magento'@'%';" && \
     mysql -u root -e "GRANT ALL PRIVILEGES ON * . * TO 'magento-test'@'%';" && \
-    service elasticsearch stop
+    ./stop-services
