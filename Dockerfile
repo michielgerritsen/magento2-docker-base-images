@@ -45,4 +45,4 @@ RUN apt update --fix-missing && \
     ls -al /var/lib/elasticsearch/nodes/* && \
     chown -R elasticsearch:elasticsearch /var/lib/elasticsearch/ && \
     chmod -R 777 /var/lib/elasticsearch/ && \
-    rm -rf /var/lib/elasticsearch/node.lock
+    rm -rf /var/lib/elasticsearch/nodes/node.lock
