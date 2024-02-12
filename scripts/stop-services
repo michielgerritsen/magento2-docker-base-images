@@ -3,3 +3,5 @@
 set -e
 
 service elasticsearch stop
+
+find "/var/lib/elasticsearch/nodes/" -type f -name "*.lock" -exec rm {} \;
