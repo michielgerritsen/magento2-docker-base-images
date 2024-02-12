@@ -41,5 +41,10 @@ RUN apt update --fix-missing && \
     mysql -u root -e "CREATE USER 'magento-test'@'%' IDENTIFIED BY 'password';" && \
     mysql -u root -e "GRANT ALL PRIVILEGES ON * . * TO 'magento'@'%';" && \
     mysql -u root -e "GRANT ALL PRIVILEGES ON * . * TO 'magento-test'@'%';" && \
-    rm -rf /var/lib/elasticsearch/nodes/node.lock && \
-    rm /var/lib/elasticsearch/nodes/*/node.lock
+    cat /var/log/elasticsearch/elasticsearch.log && \
+    service elasticsearch start || true && \
+    cat /var/log/elasticsearch/elasticsearch.log && \
+    sleep 5 && \
+    cat /var/log/elasticsearch/elasticsearch.log && \
+    sleep 5 && \
+    cat /var/log/elasticsearch/elasticsearch.log
