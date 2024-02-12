@@ -10,7 +10,12 @@ if [ "$COMPOSER_VERSION" == "1" ]; then
 fi
 
 /bin/bash -c "/usr/bin/mysqld_safe &"
-service elasticsearch start
+
+service elasticsearch start || true
+
+echo "Elasticsearch logs:"
+cat /var/log/elasticsearch/elasticsearch.log
+echo "Elasticsearch logs end. Bye."; exit 1
 
 # Now wait until mysql is online
 
