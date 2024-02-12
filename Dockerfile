@@ -21,7 +21,7 @@ RUN apt update --fix-missing && \
     echo "Replacing Elasticsearch config values" && \
     /usr/share/elasticsearch/bin/elasticsearch-plugin install -b analysis-icu && \
     /usr/share/elasticsearch/bin/elasticsearch-plugin install -b analysis-phonetic && \
-    systemctl restart elasticsearch && \
+    service elasticsearch restart && \
     rm -rf /var/lib/apt/lists/* && \
     sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld.cnf && \
     echo 'memory_limit = 4G' >> /usr/local/etc/php/conf.d/memory-limit-php.ini && \
