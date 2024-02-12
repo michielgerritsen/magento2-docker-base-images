@@ -13,16 +13,7 @@ fi
 #rm /var/lib/elasticsearch/nodes/node.lock || true
 #rm /var/lib/elasticsearch/nodes/*/node.lock || true
 
-#service elasticsearch start
-
-echo "elasticsearch.log:"
-cat /var/log/elasticsearch/elasticsearch.log
-sleep 5
-echo "elasticsearch.log:"
-cat /var/log/elasticsearch/elasticsearch.log
-sleep 5
-echo "elasticsearch.log:"
-cat /var/log/elasticsearch/elasticsearch.log
+service elasticsearch start
 
 # Now wait until mysql is online
 
@@ -42,4 +33,25 @@ done
 
 if [ $count -eq $retries ]; then
   echo "Could not connect to MySQL after $retries retries."
+fi
+
+retries=20
+count=0
+
+while [ $count -lt $retries ]; do
+  curl -s -f -o /dev/null "http://localhost:9200"
+
+  if [ $? -eq 0 ]; then
+    echo "Elasticsearch is available."
+    break
+  fi
+
+  count=$((count+1))
+  echo "Elasticsearch is not available. Retrying..."
+  sleep 1
+done
+
+if [ $count -eq $retries ]; then
+  cat /var/log/elasticsearch/elasticsearch.log
+  echo "Could not connect to Elasticsearch after $retries retries."
 fi
