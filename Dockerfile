@@ -19,8 +19,6 @@ RUN apt update --fix-missing && \
     apt update && \
     echo "[mysqld]\ndefault-authentication-plugin=mysql_native_password" > ~/.my.cnf && \
     apt install -y elasticsearch mysql-server mysql-client && \
-    ls -al /etc/rc*.d/ && \
-    update-rc.d elasticsearch disable && \
     echo "Replacing Elasticsearch config values" && \
     /usr/share/elasticsearch/bin/elasticsearch-plugin install -b analysis-icu && \
     /usr/share/elasticsearch/bin/elasticsearch-plugin install -b analysis-phonetic && \
