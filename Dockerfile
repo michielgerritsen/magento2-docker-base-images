@@ -22,6 +22,7 @@ RUN apt update --fix-missing && \
     /usr/share/elasticsearch/bin/elasticsearch-plugin install -b analysis-icu && \
     /usr/share/elasticsearch/bin/elasticsearch-plugin install -b analysis-phonetic && \
     service elasticsearch restart && \
+    service elasticsearch stop && \
     rm -rf /var/lib/apt/lists/* && \
     sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld.cnf && \
     echo 'memory_limit = 4G' >> /usr/local/etc/php/conf.d/memory-limit-php.ini && \
@@ -38,5 +39,4 @@ RUN apt update --fix-missing && \
     mysql -u root -e "CREATE USER 'magento'@'%' IDENTIFIED BY 'password';" && \
     mysql -u root -e "CREATE USER 'magento-test'@'%' IDENTIFIED BY 'password';" && \
     mysql -u root -e "GRANT ALL PRIVILEGES ON * . * TO 'magento'@'%';" && \
-    mysql -u root -e "GRANT ALL PRIVILEGES ON * . * TO 'magento-test'@'%';" && \
-    service elasticsearch stop
+    mysql -u root -e "GRANT ALL PRIVILEGES ON * . * TO 'magento-test'@'%';"
