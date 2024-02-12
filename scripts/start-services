@@ -1,6 +1,8 @@
 #!/bin/bash
 
 set -e
+set -x
+
 [ "$DEBUG" == 'true' ] && set -x
 
 if [ "$COMPOSER_VERSION" == "1" ]; then
@@ -35,6 +37,7 @@ if [ $count -eq $retries ]; then
   echo "Could not connect to MySQL after $retries retries."
 fi
 
+echo "Now connecting to Elasticsearch"
 retries=20
 count=0
 
