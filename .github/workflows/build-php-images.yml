@@ -31,7 +31,7 @@ jobs:
         --build-arg PHP_VERSION=${{ matrix.cfg.PHP_VERSION }}
 
     - name: Test that the image is working
-      run: docker run -e DEBUG=true michielgerritsen/magento2-base-image:${{ matrix.cfg.PHP_VERSION }} ./start-services
+      run: docker run michielgerritsen/magento2-base-image:${{ matrix.cfg.PHP_VERSION }} ./start-services
 
     # Step 3: Upload the images to Docker Hub.
     - name: Docker hub login
