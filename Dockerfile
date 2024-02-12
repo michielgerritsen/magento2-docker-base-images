@@ -39,4 +39,5 @@ RUN apt update --fix-missing && \
     mysql -u root -e "GRANT ALL PRIVILEGES ON * . * TO 'magento'@'%';" && \
     mysql -u root -e "GRANT ALL PRIVILEGES ON * . * TO 'magento-test'@'%';" && \
     service elasticsearch restart || true && \
-    sleep 20
+    sleep 20 && \
+    cat /var/log/elasticsearch/elasticsearch.log
