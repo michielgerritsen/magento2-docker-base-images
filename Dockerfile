@@ -23,6 +23,7 @@ RUN apt update --fix-missing && \
     /usr/share/elasticsearch/bin/elasticsearch-plugin install -b analysis-phonetic && \
     service elasticsearch restart && \
     service elasticsearch stop && \
+    sleep 5 && \
     rm -rf /var/lib/apt/lists/* && \
     sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld.cnf && \
     echo 'memory_limit = 4G' >> /usr/local/etc/php/conf.d/memory-limit-php.ini && \
