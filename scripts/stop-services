@@ -9,3 +9,19 @@ service elasticsearch stop
 ps aux
 
 sleep 5
+
+ps aux
+
+sleep 5
+
+ps aux
+
+sleep 5
+
+ps aux
+
+sleep 5
+
+ps aux
+
+sleep 5
