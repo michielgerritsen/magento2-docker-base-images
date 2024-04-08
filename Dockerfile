@@ -7,6 +7,7 @@ ENV COMPOSER_VERSION=2
 COPY scripts/retry retry
 COPY scripts/start-services start-services
 COPY scripts/stop-services stop-services
+COPY templates/memory-limit-php.ini /usr/local/etc/php/conf.d/memory-limit-php.ini
 
 RUN apt update --fix-missing && \
     export DEBIAN_FRONTEND=noninteractive && \
