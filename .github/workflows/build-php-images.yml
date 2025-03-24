@@ -12,6 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         cfg:
+          - { PHP_VERSION: php84-fpm }
           - { PHP_VERSION: php83-fpm }
           - { PHP_VERSION: php82-fpm }
           - { PHP_VERSION: php81-fpm }
@@ -21,7 +22,7 @@ jobs:
           - { PHP_VERSION: php72-fpm }
           - { PHP_VERSION: php71-fpm }
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
 
     # Step 1: Build the docker image
     - name: Build the Docker image
