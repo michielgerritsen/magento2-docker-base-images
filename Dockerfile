@@ -12,6 +12,7 @@ COPY templates/memory-limit-php.ini /usr/local/etc/php/conf.d/memory-limit-php.i
 RUN apt update --fix-missing && \
     export DEBIAN_FRONTEND=noninteractive && \
     apt install -y gnupg procps apt-transport-https lsb-release software-properties-common jq && \
+    docker-php-ext-install ftp && \
     curl -L https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add - && \
     echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | tee -a /etc/apt/sources.list.d/elastic-7.x.list && \
     wget https://repo.mysql.com//mysql-apt-config_0.8.18-1_all.deb && \
