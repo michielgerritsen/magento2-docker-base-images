@@ -2,4 +2,4 @@
 
 set -e
 
-pkill -TERM supervisord
+/usr/bin/supervisorctl shutdown
