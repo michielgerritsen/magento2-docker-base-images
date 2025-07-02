@@ -16,7 +16,6 @@ jobs:
           - { PHP_VERSION: "8.3", PHP_VERSION_FPM: php83-fpm }
           - { PHP_VERSION: "8.2", PHP_VERSION_FPM: php82-fpm }
           - { PHP_VERSION: "8.1", PHP_VERSION_FPM: php81-fpm }
-          - { PHP_VERSION: "8.0", PHP_VERSION_FPM: php80-fpm }
           - { PHP_VERSION: "7.4", PHP_VERSION_FPM: php74-fpm }
           - { PHP_VERSION: "7.3", PHP_VERSION_FPM: php73-fpm }
           - { PHP_VERSION: "7.2", PHP_VERSION_FPM: php72-fpm }
