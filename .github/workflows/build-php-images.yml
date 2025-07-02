@@ -31,8 +31,10 @@ jobs:
         -t michielgerritsen/magento2-base-image:${{ matrix.cfg.PHP_VERSION_FPM }}
         --build-arg PHP_VERSION=${{ matrix.cfg.PHP_VERSION }}
 
+    # Step 2: Test the docker image
     - name: Test that the image is working
-      run: docker run michielgerritsen/magento2-base-image:${{ matrix.cfg.PHP_VERSION }} ./start-services
+      run: |
+        docker run michielgerritsen/magento2-base-image:${{ matrix.cfg.PHP_VERSION }} bash -c './start-services && echo "Services started. Now trying to shut down" && ./stop-services && ./start-services'
 
     # Step 3: Upload the images to Docker Hub.
     - name: Docker hub login
