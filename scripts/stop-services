@@ -2,4 +2,13 @@
 
 set -e
 
+echo "Stopping services..."
+/usr/bin/supervisorctl stop elasticsearch
+sleep 5
 /usr/bin/supervisorctl shutdown
+
+sleep 20
+echo "Services stopped."
+
+# Wait until all elasticsearch processes are stopped
+rm -fv /var/lib/elasticsearch/nodes/*/node.lock
