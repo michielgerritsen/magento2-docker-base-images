@@ -3,3 +3,13 @@
 set -e
 
 /usr/bin/supervisorctl shutdown
+
+# Wait until all elasticsearch processes are stopped
+count=0
+while pgrep -x "elasticsearch" > /dev/null; do
+    count=$((count+1))
+    echo "Waiting for Elasticsearch to stop $count..."
+    sleep 1
+done
+
+rm -fv /var/lib/elasticsearch/nodes/*/node.lock
