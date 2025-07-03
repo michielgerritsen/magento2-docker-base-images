@@ -2,7 +2,10 @@
 
 set -e
 
+echo "Stopping services..."
 /usr/bin/supervisorctl shutdown
+
+echo "Services stopped."
 
 # Wait until all elasticsearch processes are stopped
 count=0
