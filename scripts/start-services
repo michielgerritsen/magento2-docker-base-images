@@ -16,7 +16,7 @@ if [ ! -d "/var/lib/mysql/mysql" ]; then
   mysqld --initialize-insecure --user=mysql --datadir=/var/lib/mysql
 fi
 
-exec /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
+/usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf &
 
 # Now wait until mysql is online
 
