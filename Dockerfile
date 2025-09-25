@@ -17,7 +17,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         lsb-release ca-certificates curl wget gnupg2 software-properties-common \
         supervisor openjdk-17-jdk apt-transport-https locales \
-        unzip zip git jq patch ssh-client vim && \
+        unzip zip git jq patch ssh-client vim rsync && \
     locale-gen en_US.UTF-8 && \
     update-locale LANG=en_US.UTF-8
 
